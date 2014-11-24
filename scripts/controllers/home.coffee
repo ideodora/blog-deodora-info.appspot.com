@@ -3,9 +3,8 @@ JSONStream = require 'JSONStream'
 $ = require 'jquery'
 
 ApplicationController = require './application.coffee'
-# Vue = require 'vue'
 
-DemoView = require '../modelViews/home/demo.coffee'
+ArticleList = require '../modelViews/home/articleList.coffee'
 
 class Home extends ApplicationController
 	
@@ -13,6 +12,6 @@ class Home extends ApplicationController
 
 		console.log 'me home'
 
-		demo = new DemoView()
+		articleList = new ArticleList()
 
 module.exports = new Home
