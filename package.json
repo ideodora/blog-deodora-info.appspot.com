@@ -5,6 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm run watch-script & npm run watch-style",
+    "watch-script": "watchify -t coffeeify -t browserify-shim --extension=\".coffee\" scripts/main.coffee -o gae/static/js/main.js -dv",
+    "build-script": "browserify -t coffeeify -t browserify-shim --extension=\".coffee\" scripts/main.coffee > gae/static/js/main.min.js",
+    "watch-style": "nodemon --watch styles/less --ignore styles/less/bootstrap --ext \"less\" --exec \"npm run less\"",
+    "build-style": "npm run less && npm run autoprefixer && npm run csscomb && npm run cssmin",
+    "less": "lessc --strict-math=on --source-map=gae/static/css/style.css.map --source-map-rootpath=/css --source-map-url=/style.css.map styles/less/style.less gae/static/css/style.css",
+    "autoprefixer": "autoprefixer -b \"Android 2.3, Android >= 4, Chrome >= 20, Firefox >= 24, Explorer >= 8, iOS >= 6, Opera >= 12, Safari >= 6\" gae/static/css/style.css",
+    "csscomb": "csscomb -c styles/less/bootstrap/.csscomb.json gae/static/css/style.css",
+    "cssmin": "cleancss --skip-advanced -c ie8 gae/static/css/style.css | cssmin > gae/static/css/style.min.css",
     "setup": "npm run setup-bower && npm run setup-bootstrap",
     "setup-bower": "bower install",
     "setup-bootstrap": "npm run setup-bootstrap-less & npm run setup-bootstrap-fonts",
@@ -24,5 +33,27 @@
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "bootstrap": "./bower_components/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "bootstrap": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "dependencies": {
+    "JSONStream": "^0.10.0",
+    "autoprefixer": "^4.0.0",
+    "browserify": "^6.3.2",
+    "browserify-shim": "^3.8.0",
+    "clean-css": "^2.2.19",
+    "coffeeify": "^1.0.0",
+    "csscomb": "^3.0.4",
+    "cssmin": "^0.4.2",
+    "nodemon": "^1.2.1",
+    "page": "^1.4.1",
+    "vue": "^0.11.0",
+    "watchify": "^2.1.1"
   }
 }

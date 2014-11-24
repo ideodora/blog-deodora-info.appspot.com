@@ -28,4 +28,6 @@ bower_components/*
 # Users Environment Variables
 .lock-wscript
 
+gae/static/js/main.min.js
+gae/static/js/main.js
 styles/less/bootstrap/*
