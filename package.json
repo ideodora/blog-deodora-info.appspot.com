@@ -1,0 +1,28 @@
+{
+  "name": "blog-deodora.info.appspot.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm run setup-bower && npm run setup-bootstrap",
+    "setup-bower": "bower install",
+    "setup-bootstrap": "npm run setup-bootstrap-less & npm run setup-bootstrap-fonts",
+    "setup-bootstrap-less": "cp -R bower_components/bootstrap/less/* styles/less/bootstrap/",
+    "setup-bootstrap-fonts": "cp bower_components/bootstrap/fonts/* gae/static/fonts/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ideodora/blog-deodora.info.appspot.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ideodora/blog-deodora.info.appspot.com/issues"
+  },
+  "homepage": "https://github.com/ideodora/blog-deodora.info.appspot.com",
+  "browser": {
+    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "bootstrap": "./bower_components/bootstrap/dist/js/bootstrap.js"
+  }
+}
