@@ -14,6 +14,9 @@ class ArticleList
 				rowIndex: -1
 				articleIndex: -1
 			methods:
+				jump: (target) ->
+					location.href = target.link
+
 				appendArticleFirst: (article) ->
 					this.rows[0].articles.push article
 					this.rowIndex = 0
@@ -55,7 +58,7 @@ class ArticleList
 
 	parse: (res) =>
 		articles = []
-		titles = res.pipe(JSONStream.parse('.title'))
+		titles = res.pipe(JSONStream.parse('.*'))
 		titles.on 'data', (data) =>
 
 			# mod3 = vm.counter % 3
@@ -64,7 +67,9 @@ class ArticleList
 
 			article =
 				done: false
-				content: data
+				content: data.title
+				excerpt: data.excerpt
+				link: data.link
 
 			@vm.appendArticle(article)
 			# articles.push article
