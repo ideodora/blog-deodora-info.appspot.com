@@ -16,7 +16,8 @@
     "cssmin": "cleancss --skip-advanced -c ie8 gae/static/css/style.css | cssmin > gae/static/css/style.min.css",
     "setup": "npm run setup-bower && npm run setup-bootstrap",
     "setup-bower": "bower install",
-    "setup-bootstrap": "npm run setup-bootstrap-less & npm run setup-bootstrap-fonts",
+    "setup-bootstrap": "npm run setup-bootstrap-dir && npm run setup-bootstrap-less & npm run setup-bootstrap-fonts",
+    "setup-bootstrap-dir": "mkdir -p styles/less/bootstrap",
     "setup-bootstrap-less": "cp -R bower_components/bootstrap/less/* styles/less/bootstrap/",
     "setup-bootstrap-fonts": "cp bower_components/bootstrap/fonts/* gae/static/fonts/"
   },
