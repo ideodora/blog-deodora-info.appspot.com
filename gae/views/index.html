@@ -25,9 +25,8 @@
 
 <div class="container" id="articles">
 	<!-- Example row of columns -->
-	<div class="row">
+	<div class="row" v-repeat="rows">
 		<div class="col-md-4 {{ done ? 'done' : '' }}"
-			v-class="last: lastColumn"
 			v-repeat="articles"
 			v-on="click: done = !done">
 			<h2>{{ content }}</h2>
