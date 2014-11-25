@@ -8,6 +8,5 @@ class Router
 		page
 			click: false
 			popstate: false
-	
 
 module.exports = Router

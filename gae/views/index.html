@@ -23,17 +23,23 @@
 	</div>
 </div>
 
-<div class="container" id="articles">
-	<!-- Example row of columns -->
-	<div class="row" v-repeat="rows">
-		<div class="col-md-4 {{ done ? 'done' : '' }}"
-			v-repeat="articles">
-			<h2 v-on="click: jump(this)">{{ content }}</h2>
-			<div class="excerpt">{{{ excerpt }}}</div>
-			<p><a class="btn btn-default" role="button" v-on="click: jump(this)">View details &raquo;</a></p>
-		</div>
+<div class="container" v-component="bs-tiles"></div>
+
+<template id="tiles-template">
+	<div class="row" v-component="bs-row" v-repeat="rows" v-ref="rows"></div>
+</template>
+
+<template id="row-template">
+	<div class="col-md-4" v-repeat="columns">
+		<h2>
+			<a href="{{ link }}" target="_blank">{{ title }}</a>
+		</h2>
+		<div class="excerpt">{{{ excerpt }}}</div>
+		<p><a class="btn btn-default" role="button" href="{{ link }}" target="_blank">View details &raquo;</a></p>
 	</div>
-</div> <!-- /container -->	
+</template>
+
+
 {% endblock %}
 
 

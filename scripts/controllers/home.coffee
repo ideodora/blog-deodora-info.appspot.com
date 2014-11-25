@@ -1,17 +1,25 @@
-http = require 'http'
-JSONStream = require 'JSONStream'
-$ = require 'jquery'
+Vue = require 'vue'
 
 ApplicationController = require './application.coffee'
 
-ArticleList = require '../modelViews/home/articleList.coffee'
+BootstrapTiles = require '../components/bootstrap/tiles/tiles.coffee'
 
 class Home extends ApplicationController
 	
-	initialize: ->
+	handler: =>
 
-		console.log 'me home'
+		# Vue.component 'bs-row', BootstrapRow
 
-		articleList = new ArticleList()
+		@app = new Vue
+			el: 'body'
+			components:
+				"bs-tiles": BootstrapTiles
+			created: ->
+				@$on 'BootstrapTiles-created', (child) ->
+					console.log child
+					child.$data.$add 'rows', []
+					child.$data.$add 'maxCol', 3
+					child.fetch()
+
 
 module.exports = new Home
